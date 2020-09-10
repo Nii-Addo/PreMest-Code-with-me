@@ -59,10 +59,10 @@ body{
 
 .current-weather{
   position:absolute;
-  top:15%;
+  top:18%;
   left:23%;
   width: 60%;
-  height: 43%;
+  height: 35%;
   padding: 4px;
 }
 
@@ -98,8 +98,8 @@ body{
 .alt{
   display: flex;
   position: absolute;
-  top:48%;
-  left:35%;
+  top:70%;
+  left:33%;
 }
 
 .initial-location{
@@ -110,10 +110,10 @@ body{
 }
 
 .authenticated-content{
-  width: 60%;
+  width: 60.5%;
   height:250px;
   position:absolute;
   top:55%;
-  left:25%;
+  left:23%;
   background-color: #f5f5f5;
 }

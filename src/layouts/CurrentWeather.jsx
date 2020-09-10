@@ -4,9 +4,10 @@ import { CurrentWeather, WeatherItem } from '../styledComponents/Divs';
 import '../App.css';
 const CurrentWeatherInfo = ( props ) => {
   const { country, city, wind_speed, humidity, precipitation, uv_index, visibility, pressure, weather_icons, temperature, feelslike, wind_degree, cloudcover } = props.currentLocationWeather;
+  const isSearched = props.isSearched;
   return ( <React.Fragment>
        {props.currentLocationWeather.length === 0 ? "null" : <CurrentWeather >
-      <div className="initial-location">You are currently in {city},{country}</div>
+      {!isSearched?<div className="initial-location">You are currently in {city},{country}</div>:<div className="initial-location">You searched {city}</div>}
       <div>
         <div className="basics">
           <WeatherItem>Wind: {wind_speed}mph</WeatherItem>

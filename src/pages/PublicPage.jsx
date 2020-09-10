@@ -1,16 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types';
-import {LoginButton,SignupButton} from '../styledComponents/Divs';
+import { LoginButton, SignupButton } from '../styledComponents/Divs';
 import SearchElement from '../layouts/SearchBox';
 import CurrentWeatherInfo from '../layouts/CurrentWeather';
 import '../App.css';
-
-const PublicPage = (props) => {
-  const currentLocationWeather=props.currentLocationWeather;
-  const handleChange=props.handleChange;
-  const search=props.search;
-  return (
-    <div className="public">
+const PublicPage = ( props ) => {
+  const currentLocationWeather = props.currentLocationWeather;
+  const handleChange = props.handleChange;
+  const isSearched = props.isSearched;
+  const search = props.search;
+  return ( <div className="public">
       <div className="top-div">
          <span className="app-name">Live-Weather</span>
          <div className="login-mod">
@@ -22,10 +21,8 @@ const PublicPage = (props) => {
         <SearchElement currentLocationWeather={currentLocationWeather} handleChange={handleChange} search={search}/>
       </div>
       <div className="current-weather">
-        <CurrentWeatherInfo currentLocationWeather={currentLocationWeather}/>
+        <CurrentWeatherInfo currentLocationWeather={currentLocationWeather} isSearched={isSearched}/>
       </div>
-    </div>
-  )
+    </div> )
 }
-
 export default PublicPage
