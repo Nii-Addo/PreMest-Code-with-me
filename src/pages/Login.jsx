@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react';
+import { AuthContext } from '../AuthContext';
 import PropTypes from 'prop-types';
-import './LoginCss.css';
+import { Link, Redirect } from 'react-router-dom';
+import '../css/LoginCss.css';
 const Login = ( props ) => {
   const [ username, setUsername ] = useState();
   const [ password, setPassword ] = useState();
-  const [ isAuthenticated, setIsAuthenticated ] = useState( false );
+  const [ redirectOnLogin, setRedirectOnLogin ] = useState( false );
+  const authState = useContext( AuthContext );
   const handleUsernameChange = ( event ) => {
     const username = event.target.value;
     setUsername( username );
@@ -13,14 +16,16 @@ const Login = ( props ) => {
     const password = event.target.value;
     setPassword( password );
   }
-  const login = ( event ) => {
+  const login = () => {
     if ( username === 'admin@test.com' && password === 'password' ) {
-      isAuthenticated( true );
+      authState.setIsAuthenticated( true );
+      setRedirectOnLogin( true );
     } else {
-      setIsAuthenticated( false );
+      authState.setIsAuthenticated( false );
     }
   }
   return ( <React.Fragment>
+    {redirectOnLogin && <Redirect to="/"/>}
     <div className="login-page">
      <div className=" card login-form">
         <h3 className="login-header">Login</h3>

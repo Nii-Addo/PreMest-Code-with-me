@@ -58,3 +58,8 @@ export const SignupButton=styled(SearchButton)`
     border-bottom:2px solid underline;
   }
 `;
+
+export const LogoutButton=styled(SearchButton)`
+  height: 30px;
+  background-color:gray;
+`;
