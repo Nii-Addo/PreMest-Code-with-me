@@ -1,13 +1,17 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import '../css/HomeCss.css'
-const AuthUserPage = ( props ) => {
-  const getFiveSearches = props.getFiveSearches;
-  const addSearchToQueue = props.addSearchToQueue;
-  return ( <div>
-      <h4>Your Last 5 searches</h4>
-      <div>
-      </div>
-    </div> )
-}
-export default AuthUserPage
+import React, { useContext } from "react";
+import PropTypes from "prop-types";
+import HistoryWeatherInfo from "../layouts/HistoryWeather";
+import { HistoryContext } from "../HistoryContext";
+import "../css/HistoryCss.css";
+const AuthUserPage = (props) => {
+  const historyContext = useContext(HistoryContext);
+  return (
+    <div>
+      <h4 className="intro">Your previous searches</h4>
+      {historyContext.searchHistory.map((history) => {
+        return <HistoryWeatherInfo history={history} />;
+      })}
+    </div>
+  );
+};
+export default AuthUserPage;

@@ -1,27 +1,42 @@
-import React, { useState } from 'react';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { AuthProvider } from './AuthContext';
-import './App.css';
-const AppRoutes = ( props ) => {
-  return ( <Switch>
-    <Route exact path="/">
-      <Home/>
-    </Route>
-    <Route path="/login">
-       <Login/>
-    </Route>
-  </Switch> );
-}
+import React from "react";
+import Home from "./pages/Home";
+import History from "./pages/History";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { AuthProvider } from "./AuthContext";
+import { HistoryProvider } from "./HistoryContext";
+import "./App.css";
+const AppRoutes = (props) => {
+  return (
+    <Switch>
+      <Route exact path="/">
+        <Home />
+      </Route>
+      <Route path="/history">
+        <History />
+      </Route>
+      <Route path="/login">
+        <Login />
+      </Route>
+      <Route path="/regsitration">
+        <Signup />
+      </Route>
+    </Switch>
+  );
+};
 
 function App() {
-  return ( <Router>
+  return (
+    <Router>
       <AuthProvider>
-        <div className="App">
-          <AppRoutes/>
-        </div>
+        <HistoryProvider>
+          <div className="App">
+            <AppRoutes />
+          </div>
+        </HistoryProvider>
       </AuthProvider>
-    </Router> );
+    </Router>
+  );
 }
 export default App;

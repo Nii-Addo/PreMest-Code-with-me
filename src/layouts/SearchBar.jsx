@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Searchbox, SearchButton } from '../styledComponents/Divs';
 import '../css/HomeCss.css';

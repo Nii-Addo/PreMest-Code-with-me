@@ -51,22 +51,28 @@ const SigninSubmitButton = styled.button`
   }
 `;
 
-const Login = (props) => {
+const Signup = (props) => {
   const [errorMessage, setErrorMessage] = useState();
-  const [username, setUsername] = useState();
+  const [fullName, setFullname] = useState();
+  const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [redirectOnLogin, setRedirectOnLogin] = useState(false);
   const authState = useContext(AuthContext);
-  const handleUsernameChange = (event) => {
-    const username = event.target.value;
-    setUsername(username);
+
+  const handleFullnameChange = (event) => {
+    const fullName = event.target.value;
+    setFullname(fullName);
+  };
+  const handleEmailChange = (event) => {
+    const email = event.target.value;
+    setEmail(email);
   };
   const handlePasswordChange = (event) => {
     const password = event.target.value;
     setPassword(password);
   };
-  const login = () => {
-    if (username === "admin@test.com" && password === "password") {
+  const signup = () => {
+    if (email === "admin@test.com" && password === "password") {
       authState.setIsAuthenticated(true);
       setRedirectOnLogin(true);
     } else {
@@ -77,17 +83,26 @@ const Login = (props) => {
 
   return (
     <React.Fragment>
-      {redirectOnLogin && <Redirect to="/" />}
+      {redirectOnLogin && <Redirect to="/login" />}
       <div className="login-page">
         <div className="login-form">
-          <h3 className="login-header">Login</h3>
-          <form onSubmit={login}>
+          <h3 className="login-header">Signup</h3>
+          <form onSubmit={signup}>
+            <div>{errorMessage && <div>{errorMessage}</div>}</div>
             <div>
               <FormLoginInputField
-                name="username"
+                name="fullName"
+                type="text"
+                placeholder="Full name"
+                onChange={handleFullnameChange}
+              />
+            </div>
+            <div>
+              <FormLoginInputField
+                name="email"
                 type="email"
-                placeholder="username"
-                onChange={handleUsernameChange}
+                placeholder="Email"
+                onChange={handleEmailChange}
               />
             </div>
             <div>
@@ -99,12 +114,12 @@ const Login = (props) => {
               />
             </div>
             <div>
-              <SigninSubmitButton type="submit">Login</SigninSubmitButton>
+              <SigninSubmitButton type="submit">Submit</SigninSubmitButton>
             </div>
           </form>
           <div className="signup-link">
-            <Link to="/registration" className="signup-footer-link">
-              Sign up here
+            <Link to="/login" className="signup-footer-link">
+              Login here
             </Link>
           </div>
         </div>
@@ -112,4 +127,4 @@ const Login = (props) => {
     </React.Fragment>
   );
 };
-export default Login;
+export default Signup;

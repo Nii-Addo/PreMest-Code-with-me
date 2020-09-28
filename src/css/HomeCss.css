@@ -1,105 +1,62 @@
-
-.public{
+.public {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
 }
 
-.top-div{
+.top-div {
   position: absolute;
-  top:5%;
+  top: 5%;
   width: 100%;
 }
 
-.top-div button{
-  float:right;
-  margin-right:4px;
+.top-div button {
+  float: right;
+  margin-right: 4px;
 }
 
-.login-mod{
-  margin-right: 8px;
+.login-mod {
+  margin-right: 20px;
 }
 
-.top-div span{
-  float:left;
+.top-div span {
+  float: left;
   margin-left: 70px;
   font-weight: bold;
 }
 
-.app-name{
+.app-name {
   font-size: 1.5em;
   font-weight: 500;
   font-style: italic;
 }
-.search-mod{
+
+.search-mod {
   position: absolute;
-  top:5%;
-  left:30%;
+  top: 35%;
+  left: 30%;
   display: inline-flex;
 }
 
-.left{
-  float:left;
+.left {
+  float: left;
 }
-.box{
+
+.box {
   margin-right: 2px;
 }
 
-.current-weather{
-  position:absolute;
-  top:18%;
-  left:23%;
-  width: 60%;
+.current-weather {
+  position: absolute;
+  top: 50%;
+  left: 21%;
+  width: 65%;
   height: 35%;
   padding: 4px;
 }
 
-.basics{
-  display: inline-flex;
-  width: 100%;
-  height: 40px;
-}
-
-.further-details{
-  margin-left: 160px;
-  margin-top: 30px;
-  width: 100%;
-  display: flex;
-}
-
-.further-details .img{
-  width: 100%;
-  height: 100%;
-}
-
-.further-details-stats{
-  margin-left: 16px;
-  text-transform: capitalize;
-  display: inline-flex;
-}
-
-.further-details-stats div{
-  margin-right: 16px;
-  font-weight: bold;
-}
-
-.alt{
-  display: flex;
-  position: absolute;
-  top:70%;
-  left:33%;
-}
-
-.initial-location{
-  margin-top:4px;
+.initial-location {
+  margin-top: 4px;
   margin-bottom: 4px;
   font-size: 1em;
   margin-left: 200px;
-}
-
-.authenticated-content{
-  width: 60.5%;
-  height:250px;
-  position:absolute;
-  top:55%;
-  left:23%;
 }
