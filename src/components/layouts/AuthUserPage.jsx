@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import HistoryWeatherInfo from "../layouts/HistoryWeather";
-import { HistoryContext } from "../HistoryContext";
-import "../css/HistoryCss.css";
+import { HistoryContext } from "../../contexts/HistoryContext";
+import "../../css/HistoryCss.css";
 const AuthUserPage = (props) => {
   const historyContext = useContext(HistoryContext);
   return (

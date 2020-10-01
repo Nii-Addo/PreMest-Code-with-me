@@ -1,0 +1,47 @@
+.signup-page {
+  height: 100vh;
+  width: 100%;
+  background-color: teal;
+  overflow: hidden !important;
+}
+
+.signup-page-mod {
+  background: #f8f9fa;
+  width: 50%;
+  height: 90%;
+  border-radius: 6px;
+  margin-left: 25%;
+}
+
+.signup-page-heading {
+  padding-left: 4%;
+  margin-top: 3%;
+  color: black;
+}
+
+.text-heading {
+  font-size: 24px;
+  padding-top: 8px;
+}
+
+.signup-page-form {
+  margin-top: 10px;
+  margin-left: 4%;
+  margin-right: 4%;
+  height: 70%;
+}
+
+.agreement {
+  margin-right: 20px;
+  font-size: 0.8em;
+  color: black;
+}
+
+.btnSignup {
+  width: 300px;
+}
+
+.signin-link-on-signup-form {
+  margin-left: 4%;
+  color: black;
+}

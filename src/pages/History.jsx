@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
-import { HistoryContext } from "../HistoryContext";
-import withAuthorizedUser from "../layouts/WithAuthorizedUser";
-import AuthUserPage from "../layouts/AuthUserPage";
-import "../css/HomeCss.css";
-import HistoryWeatherInfo from "../layouts/HistoryWeather";
+import { HistoryContext } from "../contexts/HistoryContext";
+import withAuthorizedUser from "../components/layouts/WithAuthorizedUser";
+import AuthUserPage from "../components/layouts/AuthUserPage";
+import { Link } from "react-router-dom";
+import "../css/HistoryCss.css";
 
 const History = (props) => {
   const historyContext = useContext(HistoryContext);
@@ -31,7 +31,9 @@ const History = (props) => {
         )}
       </div>
       <div>
-        <h1 className="brand-display">Live-Weather</h1>
+        <h1 className="brand-display">
+          <Link to="/">Live-Weather</Link>
+        </h1>
       </div>
     </div>
   );

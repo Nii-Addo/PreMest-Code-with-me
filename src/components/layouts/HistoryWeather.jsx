@@ -1,7 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { HistoryWeather, WeatherItem } from "../styledComponents/Divs";
-import "../css/HistoryCss.css";
+import {
+  HistoryWeather,
+  WeatherItem,
+} from "../../components/styledComponents/Divs";
+import "../../css/HistoryCss.css";
 
 const HistoryWeatherInfo = (props) => {
   const {
@@ -26,10 +29,10 @@ const HistoryWeatherInfo = (props) => {
           </div>
           <div className="history-details-stats">
             <div>temperature: {temperature}℃</div>
-            <div>Wind Degree: {wind_degree}</div>
+            <div>Wind Degree: {wind_degree}°</div>
 
-            <div>Feels Like: {feelslike}</div>
-            <div>Cloud Cover: {cloudcover}</div>
+            <div>Feels Like: {feelslike}℃</div>
+            <div>Cloud Cover: {cloudcover} okta</div>
           </div>
         </div>
       </HistoryWeather>

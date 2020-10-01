@@ -1,23 +1,40 @@
 import React, { useState, useContext } from "react";
-import { AuthContext } from "../AuthContext";
-import PropTypes from "prop-types";
-import { Link, Redirect } from "react-router-dom";
+import { Formik, useField, Form } from "formik";
+import { Link } from "react-router-dom";
+import signInValidationSchema from "../components/helpers/getSignInValidationSchema";
+import { AuthContext } from "../contexts/AuthContext";
+import { Redirect } from "react-router-dom";
 import styled from "styled-components";
-import "../css/LoginCss.css";
+import axios from "axios";
+import "../css/SignInCss.css";
 
-const FormLoginInputField = styled.input`
+const SignInTextField = ({ ...props }) => {
+  const [field, meta] = useField(props);
+  return (
+    <div>
+      <input className="text-input" {...field} {...props} />
+      {meta.touched && meta.error ? (
+        <div className="error">{meta.error}</div>
+      ) : null}
+    </div>
+  );
+};
+
+const FormLoginInputField = styled(SignInTextField)`
   appearance: none;
   background-color: rgb(255, 255, 255);
   box-shadow: none;
   color: rgb(34, 34, 34);
   display: block;
-  font-size: 0.87rem;
+  font-family: "TT Norms", "TT Norms-fallback", proxima-nova, "Helvetica Neue",
+    Verdana, Arial, Helvetica, sans-serif;
+  font-size: 1rem;
   font-weight: 400;
   height: 0.5rem;
   letter-spacing: 0.012rem;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   word-spacing: 0.16rem;
-  width: 80%;
+  width: 90%;
   border-width: 1px;
   border-style: solid;
   border-color: rgb(138, 138, 138);
@@ -26,7 +43,7 @@ const FormLoginInputField = styled.input`
   padding: 1rem;
 `;
 
-const SigninSubmitButton = styled.button`
+export const SigninSubmitButton = styled.button`
   padding: 0.25em 1em;
   display: block;
   background: none;
@@ -36,15 +53,13 @@ const SigninSubmitButton = styled.button`
   color: #fff;
   font-size: 18px;
   font-weight: 600;
-  height: 100%;
-  width: 87%;
+  height: 80%;
+  width: 100%;
   overflow: hidden;
   padding-left: 32px;
   padding-right: 32px;
   text-shadow: none;
   transition: all 0.2s ease-out 0s;
-  float: right;
-  margin-right: 67px;
 
   &:hover {
     border: 1px solid;
@@ -52,64 +67,88 @@ const SigninSubmitButton = styled.button`
 `;
 
 const Login = (props) => {
-  const [errorMessage, setErrorMessage] = useState();
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
+  const authContext = useContext(AuthContext);
+  const [loginSuccess, setLoginSuccess] = useState();
+  const [loginError, setLoginError] = useState();
+  const [loginLoading, setLoginLoading] = useState(false);
   const [redirectOnLogin, setRedirectOnLogin] = useState(false);
-  const authState = useContext(AuthContext);
-  const handleUsernameChange = (event) => {
-    const username = event.target.value;
-    setUsername(username);
-  };
-  const handlePasswordChange = (event) => {
-    const password = event.target.value;
-    setPassword(password);
-  };
-  const login = () => {
-    if (username === "admin@test.com" && password === "password") {
-      authState.setIsAuthenticated(true);
-      setRedirectOnLogin(true);
-    } else {
-      authState.setIsAuthenticated(false);
-      setErrorMessage("Wrong Email or password");
-    }
-  };
-
   return (
-    <React.Fragment>
-      {redirectOnLogin && <Redirect to="/" />}
-      <div className="login-page">
-        <div className="login-form">
-          <h3 className="login-header">Login</h3>
-          <form onSubmit={login}>
-            <div>
-              <FormLoginInputField
-                name="username"
-                type="email"
-                placeholder="username"
-                onChange={handleUsernameChange}
-              />
-            </div>
-            <div>
-              <FormLoginInputField
-                name="password"
-                type="password"
-                placeholder="password"
-                onChange={handlePasswordChange}
-              />
-            </div>
-            <div>
-              <SigninSubmitButton type="submit">Login</SigninSubmitButton>
-            </div>
-          </form>
-          <div className="signup-link">
-            <Link to="/registration" className="signup-footer-link">
-              Sign up here
-            </Link>
-          </div>
+    <div className="login-page">
+      <div className="login-mod ">
+        <div className="login-page-heading">
+          <h5>Log in to your account</h5>
+        </div>
+        <div>
+          <Formik
+            initialValues={{
+              email: "",
+              password: "",
+            }}
+            validationSchema={signInValidationSchema}
+            onSubmit={async (values, actions) => {
+              setLoginLoading(true);
+              try {
+                const user = {
+                  email: values.email,
+                  password: values.password,
+                };
+                axios
+                  .post("http://localhost:5000/users/login", user)
+                  .then((response) => {
+                    authContext.setAuthState(response.data);
+                    setLoginSuccess(response.data.message);
+                    setLoginError("");
+                    setRedirectOnLogin(true);
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                  });
+              } catch (error) {
+                setLoginLoading(false);
+                const data = error.response;
+                setLoginError(error);
+                setLoginSuccess("");
+              }
+            }}
+          >
+            {(props) => (
+              <div className="login-form">
+                {redirectOnLogin && <Redirect to="/" />}
+                <Form>
+                  <div className="form-element">
+                    <FormLoginInputField
+                      className="form-control"
+                      name="email"
+                      type="email"
+                      placeholder="Email"
+                    />
+                  </div>
+                  <div className="form-element">
+                    <FormLoginInputField
+                      className="form-control"
+                      name="password"
+                      type="password"
+                      placeholder="Password"
+                    />
+                  </div>
+                  <div className="login-btn-space">
+                    <SigninSubmitButton type="submit" value="Submit">
+                      {loginLoading ? "Loading..." : "Submit"}
+                    </SigninSubmitButton>
+                  </div>
+                </Form>
+              </div>
+            )}
+          </Formik>
+        </div>
+        <br />
+        <div>
+          <Link to="/registration" className="signup-footer-link">
+            Sign Up
+          </Link>
         </div>
       </div>
-    </React.Fragment>
+    </div>
   );
 };
 export default Login;

@@ -4,8 +4,8 @@ import History from "./pages/History";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { AuthProvider } from "./AuthContext";
-import { HistoryProvider } from "./HistoryContext";
+import { AuthProvider } from "./contexts/AuthContext";
+import { HistoryProvider } from "./contexts/HistoryContext";
 import "./App.css";
 const AppRoutes = (props) => {
   return (

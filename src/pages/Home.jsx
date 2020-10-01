@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
-import Header from "../layouts/Header";
-import CurrentWeatherInfo from "../layouts/CurrentWeather";
+import Header from "../components/layouts/Header";
+import CurrentWeatherInfo from "../components/layouts/CurrentWeather";
 import axios from "axios";
-import { HistoryContext } from "../HistoryContext";
+import { HistoryContext } from "../contexts/HistoryContext";
 import { Link } from "react-router-dom";
-import SearchBar from "../layouts/SearchBar";
+import SearchBar from "../components/layouts/SearchBar";
 import "../css/HomeCss.css";
 
 const Home = (props) => {

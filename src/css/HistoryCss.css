@@ -24,3 +24,12 @@
   font-size: 1.5rem;
   font-weight: 500;
 }
+
+.brand-display a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.brand-display a:hover {
+  text-decoration: none;
+}

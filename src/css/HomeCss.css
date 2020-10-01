@@ -5,8 +5,9 @@
 
 .top-div {
   position: absolute;
-  top: 5%;
+  top: 3%;
   width: 100%;
+  height: 50px;
 }
 
 .top-div button {
@@ -15,7 +16,11 @@
 }
 
 .login-mod {
-  margin-right: 20px;
+  margin-right: 2px;
+}
+
+.button-group {
+  margin-right: 30px;
 }
 
 .top-div span {

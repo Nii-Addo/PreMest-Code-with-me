@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { CurrentWeather, WeatherItem } from "../styledComponents/Divs";
-import "../css/HomeCss.css";
+import "../../css/HomeCss.css";
 const CurrentWeatherInfo = (props) => {
   const {
     country,
@@ -27,11 +27,11 @@ const CurrentWeatherInfo = (props) => {
         <CurrentWeather>
           <div>
             <div className="basics">
-              <WeatherItem>Wind: {wind_speed}mph</WeatherItem>
+              <WeatherItem>Wind: {wind_speed}km/h</WeatherItem>
               <WeatherItem>Humidity: {humidity}%</WeatherItem>
-              <WeatherItem>Precipitation: {precipitation}</WeatherItem>
+              <WeatherItem>Precipitation: {precipitation}mm</WeatherItem>
               <WeatherItem>UV Index: {uv_index}</WeatherItem>
-              <WeatherItem>Visibility: {visibility}+mi</WeatherItem>
+              <WeatherItem>Visibility: {visibility}km/h</WeatherItem>
               <WeatherItem>Pressure: {pressure}mb</WeatherItem>
             </div>
             <div className="further-details">
@@ -40,10 +40,10 @@ const CurrentWeatherInfo = (props) => {
               </div>
               <div className="further-details-stats">
                 <div>temperature: {temperature}℃</div>
-                <div>Wind Degree: {wind_degree}</div>
+                <div>Wind Degree: {wind_degree}°</div>
                 <div className="alt">
-                  <div>Feels Like: {feelslike}</div>
-                  <div>Cloud Cover: {cloudcover}</div>
+                  <div>Feels Like: {feelslike}℃</div>
+                  <div>Cloud Cover: {cloudcover} okta</div>
                 </div>
               </div>
             </div>

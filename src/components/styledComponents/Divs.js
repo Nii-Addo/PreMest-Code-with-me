@@ -39,7 +39,7 @@ export const CurrentWeather = styled.div`
 
   .further-details {
     position: absolute;
-    margin-left: 120px;
+    margin-left: 140px;
     width: 100%;
     display: flex;
     top: 30%;
@@ -59,14 +59,14 @@ export const CurrentWeather = styled.div`
 
   .further-details-stats {
     position: absolute;
-    left: 7%;
+    left: 9%;
     margin-left: 36px;
     text-transform: capitalize;
     display: inline-flex;
   }
 
   .further-details-stats div {
-    margin-right: 16px;
+    margin-right: 13px;
     font-weight: bold;
   }
 
@@ -76,6 +76,7 @@ export const CurrentWeather = styled.div`
     top: 70%;
     margin-top: 30px;
     left: 0%;
+    width: 100%;
   }
 `;
 
