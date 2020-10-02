@@ -24,7 +24,7 @@ const History = (props) => {
       .catch((err) => {
         console.log(err);
       });
-  });
+  }, []);
   const DisplayAuthContent = withAuthorizedUser(AuthUserPage);
   return (
     <div>

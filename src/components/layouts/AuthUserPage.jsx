@@ -8,7 +8,6 @@ const AuthUserPage = (props) => {
     <div>
       <h4 className="intro">Your previous searches</h4>
       {historyContext.searchHistory.map((history) => {
-        console.log(history);
         return <HistoryWeatherInfo history={history} key={history.id} />;
       })}
     </div>
