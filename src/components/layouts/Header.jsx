@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import PropTypes from "prop-types";
 import {
   LoginButton,
   SignupButton,
@@ -11,8 +10,6 @@ import { Link } from "react-router-dom";
 import "../../css/HomeCss.css";
 
 const Header = (props) => {
-  const searchTerm = props.searchTerm;
-  const handleChange = props.handleChange;
   const authState = useContext(AuthContext);
   const logout = authState.logout;
   return (
@@ -54,7 +51,3 @@ const Header = (props) => {
   );
 };
 export default Header;
-/*
-
-
-*/

@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Searchbox, SearchButton } from "../styledComponents/Divs";
 import "../../css/HomeCss.css";
 const SearchBar = (props) => {
@@ -25,4 +24,5 @@ const SearchBar = (props) => {
     </React.Fragment>
   );
 };
+
 export default SearchBar;

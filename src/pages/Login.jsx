@@ -76,7 +76,7 @@ const Login = (props) => {
     <div className="login-page">
       <div className="login-mod ">
         <div className="login-page-heading">
-          <h5>Log in to your account</h5>
+          <div>Log in to your account</div>
         </div>
         <div>
           <Formik
@@ -87,28 +87,24 @@ const Login = (props) => {
             validationSchema={signInValidationSchema}
             onSubmit={async (values, actions) => {
               setLoginLoading(true);
-              try {
-                const user = {
-                  email: values.email,
-                  password: values.password,
-                };
-                axios
-                  .post("http://localhost:5000/users/login", user)
-                  .then((response) => {
-                    authContext.setAuthState(response.data);
-                    setLoginSuccess(response.data.message);
-                    setLoginError("");
-                    setRedirectOnLogin(true);
-                  })
-                  .catch((err) => {
-                    console.log(err);
-                  });
-              } catch (error) {
-                setLoginLoading(false);
-                const data = error.response;
-                setLoginError(error);
-                setLoginSuccess("");
-              }
+              const user = {
+                email: values.email,
+                password: values.password,
+              };
+              await axios
+                .post("http://localhost:5000/users/login", user)
+                .then((response) => {
+                  authContext.setAuthState(response.data);
+                  setLoginSuccess(response.data.message);
+                  setLoginError("");
+                  setRedirectOnLogin(true);
+                })
+                .catch((error) => {
+                  setLoginLoading(false);
+                  const { data } = error.response;
+                  setLoginError(data.message);
+                  setLoginSuccess("");
+                });
             }}
           >
             {(props) => (
@@ -143,7 +139,7 @@ const Login = (props) => {
         </div>
         <br />
         <div>
-          <Link to="/registration" className="signup-footer-link">
+          <Link to="/regsitration" className="signup-footer-link">
             Sign Up
           </Link>
         </div>

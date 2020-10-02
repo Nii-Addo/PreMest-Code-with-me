@@ -1,9 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
-import {
-  HistoryWeather,
-  WeatherItem,
-} from "../../components/styledComponents/Divs";
+import { HistoryWeather } from "../../components/styledComponents/Divs";
 import "../../css/HistoryCss.css";
 
 const HistoryWeatherInfo = (props) => {

@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import PropTypes from "prop-types";
 import HistoryWeatherInfo from "../layouts/HistoryWeather";
 import { HistoryContext } from "../../contexts/HistoryContext";
 import "../../css/HistoryCss.css";
@@ -9,7 +8,8 @@ const AuthUserPage = (props) => {
     <div>
       <h4 className="intro">Your previous searches</h4>
       {historyContext.searchHistory.map((history) => {
-        return <HistoryWeatherInfo history={history} />;
+        console.log(history);
+        return <HistoryWeatherInfo history={history} key={history.id} />;
       })}
     </div>
   );

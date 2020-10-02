@@ -1,11 +1,8 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { CurrentWeather, WeatherItem } from "../styledComponents/Divs";
 import "../../css/HomeCss.css";
 const CurrentWeatherInfo = (props) => {
   const {
-    country,
-    city,
     wind_speed,
     humidity,
     precipitation,

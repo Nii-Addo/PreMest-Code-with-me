@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
-import PropTypes from "prop-types";
 import Header from "../components/layouts/Header";
 import CurrentWeatherInfo from "../components/layouts/CurrentWeather";
 import axios from "axios";
-import { HistoryContext } from "../contexts/HistoryContext";
-import { Link } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthContext";
 import SearchBar from "../components/layouts/SearchBar";
 import "../css/HomeCss.css";
 
@@ -55,22 +53,30 @@ const Home = (props) => {
     }
   }, []);
 
-  const [isSearched, setIsSearched] = useState(false);
   const [term, setTerm] = useState("");
-  const historyContext = useContext(HistoryContext);
+  const authState = useContext(AuthContext);
+  const token = localStorage.getItem("token");
+
   const handleChange = (event) => {
     const searchValue = event.target.value;
     setTerm(searchValue);
   };
+
   const searchTerm = () => {
     const params = {
       access_key: process.env.REACT_APP_API_API_ACCESS_KEY,
       query: term,
     };
+
+    const authFetch = axios.create({
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
     axios
       .get("http://api.weatherstack.com/current", { params })
       .then((response) => {
-        setIsSearched(true);
         let searchedWeatherValues = {
           city: response.data.location.name,
           country: response.data.location.country,
@@ -89,14 +95,15 @@ const Home = (props) => {
           visibility: response.data.current.visibility,
         };
         setCurrentLocationWeather(searchedWeatherValues);
-        historyContext.setSearchHistory((searchHistory) => [
-          ...searchHistory,
-          searchedWeatherValues,
-        ]);
+        if (authState.isAuthenticated()) {
+          authFetch.post(
+            "http://localhost:5000/history",
+            searchedWeatherValues
+          );
+        }
       })
       .catch((error) => {
         console.log(error);
-        setIsSearched(true);
       });
   };
 
@@ -124,4 +131,5 @@ const Home = (props) => {
     );
   }
 };
+
 export default Home;

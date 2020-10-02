@@ -24,6 +24,15 @@
   padding-top: 8px;
 }
 
+.signup-error {
+  color: red;
+  margin-left: 2%;
+  height: 20px;
+  background-color: pink;
+  margin-right: 4px;
+  margin-bottom: 4px;
+}
+
 .signup-page-form {
   margin-top: 10px;
   margin-left: 4%;

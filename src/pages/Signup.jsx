@@ -105,32 +105,28 @@ const Signup = () => {
             }}
             validationSchema={signUpValidationSchema}
             onSubmit={async (values, actions) => {
-              try {
-                setLoginLoading(true);
-                const userDto = {
-                  fullName: values.fullName,
-                  email: values.email,
-                  password: values.password,
-                  passwordConfirmation: values.passwordConfirmation,
-                };
+              setLoginLoading(true);
+              const userDto = {
+                fullName: values.fullName,
+                email: values.email,
+                password: values.password,
+                passwordConfirmation: values.passwordConfirmation,
+              };
 
-                axios
-                  .post("http://localhost:5000/users/register", userDto)
-                  .then((response) => {
-                    authContext.setAuthState(response.data);
-                    setSignupSuccess(response.data.message);
-                    setSignupError("");
-                    setRedirectOnLogin(true);
-                  })
-                  .catch((error) => {
-                    setLoginLoading(false);
-                    const data = error.response;
-                    setSignupError(error);
-                    setSignupSuccess("");
-                  });
-              } catch (error) {
-                console.log(error);
-              }
+              await axios
+                .post("http://localhost:5000/users/register", userDto)
+                .then((response) => {
+                  authContext.setAuthState(response.data);
+                  setSignupSuccess(response.data.message);
+                  setSignupError("");
+                  setRedirectOnLogin(true);
+                })
+                .catch((error) => {
+                  setLoginLoading(false);
+                  const { data } = error.response;
+                  setSignupError(data.message);
+                  setSignupSuccess("");
+                });
             }}
           >
             <div>
