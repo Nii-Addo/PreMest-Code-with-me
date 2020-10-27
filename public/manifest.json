@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Blog App",
+  "name": "Sample blog app for Code-along-with-me with Pre-Mest 2",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
