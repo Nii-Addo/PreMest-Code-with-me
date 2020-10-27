@@ -12,6 +12,7 @@ const Post = (props) => {
       <div>{post.title}</div>
       <div>{post.author}</div>
       <div>{post.content}</div>
+      <hr/>
     </div>
   );
 };
